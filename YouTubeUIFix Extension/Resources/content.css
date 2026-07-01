@@ -1,0 +1,88 @@
+/* ── YouTubeUIFix – content.css ───────────────────────────────
+   Single source of truth for all page styling.
+   Every rule is gated by a class / data attribute that content.js
+   sets on <html>, so nothing applies until the user's settings say so:
+
+     html.ytfix-no-shorts        → hide Shorts everywhere
+     html.ytfix-videos-only      → only video tiles in the feed grid
+     html[data-ytfix-cols="N"]   → force N videos per row (3–6)
+     html.ytfix-full-width       → feed spans the full page width
+──────────────────────────────────────────────────────────────── */
+
+/* ── Block Shorts ─────────────────────────────────────────── */
+
+/* Shorts shelves on home / subscriptions / channel / search pages
+   (grid-shelf-view-model is the 2026 markup, the ytd-* ones are older) */
+html.ytfix-no-shorts ytd-reel-shelf-renderer,
+html.ytfix-no-shorts grid-shelf-view-model:has(ytm-shorts-lockup-view-model-v2),
+html.ytfix-no-shorts grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+html.ytfix-no-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html.ytfix-no-shorts ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model-v2),
+html.ytfix-no-shorts ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
+
+/* Individual Shorts cards (feed + search results) */
+html.ytfix-no-shorts ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2),
+html.ytfix-no-shorts ytm-shorts-lockup-view-model-v2,
+html.ytfix-no-shorts ytm-shorts-lockup-view-model,
+html.ytfix-no-shorts ytd-video-renderer:has([overlay-style="SHORTS"]),
+html.ytfix-no-shorts ytd-grid-video-renderer:has([overlay-style="SHORTS"]),
+
+/* Shorts entries in the sidebar / mini-guide / channel tab bar
+   (href match is locale-independent; title/aria kept for older markup) */
+html.ytfix-no-shorts ytd-guide-entry-renderer:has(a[href^="/shorts"]),
+html.ytfix-no-shorts ytd-mini-guide-entry-renderer:has(a[href^="/shorts"]),
+html.ytfix-no-shorts ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html.ytfix-no-shorts ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+html.ytfix-no-shorts tp-yt-paper-tab:has(yt-icon[icon="shorts_filled"]),
+html.ytfix-no-shorts yt-tab-shape[tab-title="Shorts"],
+
+/* Elements content.js tags that CSS alone can't match (e.g. text-based chips) */
+html.ytfix-no-shorts .ytfix-hidden {
+  display: none !important;
+}
+
+/* ── Videos-only feed ─────────────────────────────────────────
+   Allowlist, not blocklist: a feed grid cell is kept only if it
+   holds a real video tile. Anything else — "Discover more topics"
+   cards, community posts, Playables promos, ad slots, whatever
+   YouTube ships next — is hidden without naming it, along with the
+   full-width shelves (news, topic rows) that break the grid.     */
+
+html.ytfix-videos-only ytd-rich-section-renderer,
+html.ytfix-videos-only ytd-rich-item-renderer:not(:has(ytd-rich-grid-media, yt-lockup-view-model, ytd-video-renderer)) {
+  display: none !important;
+}
+
+/* ── Grid columns ─────────────────────────────────────────── */
+
+html[data-ytfix-cols] ytd-rich-grid-renderer {
+  --ytd-rich-grid-gutter-margin: 0px !important;
+}
+
+html[data-ytfix-cols="3"] ytd-rich-grid-renderer {
+  --ytd-rich-grid-items-per-row: 3 !important;
+  --ytd-rich-grid-posts-per-row: 3 !important;
+}
+
+html[data-ytfix-cols="4"] ytd-rich-grid-renderer {
+  --ytd-rich-grid-items-per-row: 4 !important;
+  --ytd-rich-grid-posts-per-row: 4 !important;
+}
+
+html[data-ytfix-cols="5"] ytd-rich-grid-renderer {
+  --ytd-rich-grid-items-per-row: 5 !important;
+  --ytd-rich-grid-posts-per-row: 5 !important;
+}
+
+html[data-ytfix-cols="6"] ytd-rich-grid-renderer {
+  --ytd-rich-grid-items-per-row: 6 !important;
+  --ytd-rich-grid-posts-per-row: 6 !important;
+}
+
+/* ── Full-width feed ──────────────────────────────────────── */
+
+html.ytfix-full-width ytd-two-column-browse-results-renderer.grid-6-columns,
+html.ytfix-full-width ytd-two-column-browse-results-renderer.grid:not(.grid-disabled) {
+  width: 100% !important;
+  max-width: 100% !important;
+}

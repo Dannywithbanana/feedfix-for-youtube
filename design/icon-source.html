@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; background: #888; }
+  #fullbleed, #margined { display: block; }
+</style>
+</head>
+<body>
+<!-- Full-bleed variant: web-extension icons -->
+<svg id="fullbleed" width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#26262b"/>
+      <stop offset="1" stop-color="#121215"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff2442"/>
+      <stop offset="1" stop-color="#e5002b"/>
+    </linearGradient>
+    <g id="art">
+      <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+      <!-- 2x2 grid of video cards: grid 768x584 centered (x 128, y 220) -->
+      <!-- top-left: red play tile -->
+      <rect x="128" y="188" width="368" height="232" rx="40" fill="url(#red)"/>
+      <polygon points="266,254 266,354 366,304" fill="#ffffff"/>
+      <rect x="128" y="436" width="240" height="26" rx="13" fill="#4a4a52"/>
+      <!-- top-right -->
+      <rect x="528" y="188" width="368" height="232" rx="40" fill="#f4f4f5"/>
+      <rect x="528" y="436" width="240" height="26" rx="13" fill="#4a4a52"/>
+      <!-- bottom-left -->
+      <rect x="128" y="516" width="368" height="232" rx="40" fill="#f4f4f5"/>
+      <rect x="128" y="764" width="240" height="26" rx="13" fill="#4a4a52"/>
+      <!-- bottom-right -->
+      <rect x="528" y="516" width="368" height="232" rx="40" fill="#f4f4f5"/>
+      <rect x="528" y="764" width="240" height="26" rx="13" fill="#4a4a52"/>
+    </g>
+  </defs>
+  <use href="#art"/>
+</svg>
+<!-- Margined variant: macOS app icon (Big Sur style ~10% margin) -->
+<svg id="margined" width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(102.4 102.4) scale(0.8)">
+    <use href="#art"/>
+  </g>
+</svg>
+</body>
+</html>

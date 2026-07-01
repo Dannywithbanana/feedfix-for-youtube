@@ -1,15 +1,175 @@
+/* ── popup.css ─────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-    color-scheme: light dark;
+  --bg:        #18181b;
+  --surface:   #27272a;
+  --border:    #3f3f46;
+  --text:      #fafafa;
+  --subtext:   #a1a1aa;
+  --accent:    #ef4444;
+  --accent-on: #22c55e;
+  --radius:    10px;
 }
 
 body {
-    width: 100px;
-    padding: 10px;
-
-    font-family: system-ui;
-    text-align: center;
+  width: 300px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  user-select: none;
 }
 
-@media (prefers-color-scheme: dark) {
-    /* Dark Mode styles go here. */
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 12px;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.app-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.section-title {
+  padding: 12px 16px 2px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--subtext);
+  border-top: 1px solid var(--border);
+}
+
+.header + .section-title {
+  border-top: none;
+  padding-top: 4px;
+}
+
+/* ── Toggle rows ── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  transition: background 0.15s;
+  border-radius: var(--radius);
+  cursor: default;
+}
+
+.toggle-row:hover {
+  background: var(--surface);
+}
+
+.toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.toggle-label {
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.toggle-desc {
+  font-size: 11.5px;
+  color: var(--subtext);
+  line-height: 1.4;
+}
+
+/* ── Toggle switch ── */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 24px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.switch input:checked + .slider {
+  background: var(--accent-on);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(18px);
+}
+
+/* ── Segmented control (videos per row) ── */
+.segmented {
+  display: flex;
+  gap: 4px;
+  margin: 0 16px 12px;
+  padding: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.segmented button {
+  flex: 1;
+  padding: 6px 0;
+  border: none;
+  border-radius: calc(var(--radius) - 4px);
+  background: transparent;
+  color: var(--subtext);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.segmented button:hover {
+  color: var(--text);
+}
+
+.segmented button.active {
+  background: var(--accent);
+  color: white;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 10px 16px 14px;
+  font-size: 11px;
+  color: var(--subtext);
+  text-align: center;
 }
