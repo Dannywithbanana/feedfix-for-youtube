@@ -1,11 +1,12 @@
-# YouTubeUIFix
+# FeedFix for YouTube
 
-A small browser extension that de-clutters YouTube: block Shorts, keep the
-feed to actual videos, and take control of the grid layout. No tracking, no
-network calls, no build step — plain Manifest V3.
+A Safari extension that de-clutters YouTube: block Shorts, keep the feed to
+actual videos, and take control of the grid layout. No tracking, no network
+calls, no build step for the extension itself — plain Manifest V3, so it also
+runs unmodified in Chromium browsers.
 
 <p align="center">
-  <img src="design/fullbleed-1024.png" width="128" alt="YouTubeUIFix icon">
+  <img src="design/fullbleed-1024.png" width="128" alt="FeedFix icon">
 </p>
 
 ## Options
@@ -25,7 +26,7 @@ All options live in the toolbar popup and apply to open tabs instantly.
 ### Safari (macOS)
 
 1. Open `YouTubeUIFix.xcodeproj` in Xcode and build/run once (⌘R).
-2. Safari → Settings → Extensions → enable **YouTubeUIFix**.
+2. Safari → Settings → Extensions → enable **FeedFix for YouTube**.
    For local builds, allow unsigned extensions first: Safari → Develop →
    Developer Settings → *Allow unsigned extensions*.
 
@@ -33,8 +34,6 @@ All options live in the toolbar popup and apply to open tabs instantly.
 
 1. Open `chrome://extensions`, enable **Developer mode**.
 2. **Load unpacked** → select `YouTubeUIFix Extension/Resources/`.
-
-Or install the packaged zip from `dist/` (built as described below).
 
 ## How it works
 
@@ -59,17 +58,15 @@ promo elements, the rules state invariants.
 # Safari app + extension
 xcodebuild -scheme YouTubeUIFix -configuration Debug build
 
-# Chrome Web Store zip
+# Chromium zip (for stores or sideloading)
 cd "YouTubeUIFix Extension/Resources"
-zip -r ../../dist/YouTubeUIFix-chrome.zip . -x "*.DS_Store"
+zip -r ../../dist/feedfix-for-youtube.zip . -x "*.DS_Store"
 ```
 
 The icon is generated from [`design/icon-source.html`](design/icon-source.html)
 (SVG → canvas → PNG, then `sips` for the size variants); `design/` holds the
 1024px masters.
 
-## Notes for store submission
-
-Store policies generally reject extension names that *lead* with a trademark —
-submit under a name like **“GridFix for YouTube”** rather than “YouTubeUIFix”
-(update `manifest.json` `name` and `_locales/en/messages.json`).
+Internal identifiers (Xcode project, bundle IDs) intentionally keep the
+original `YouTubeUIFix` name — renaming bundle IDs orphans the extension
+registration Safari already knows about.

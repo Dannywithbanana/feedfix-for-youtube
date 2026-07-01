@@ -7,7 +7,7 @@ struct ContentView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.red)
 
-            Text("YouTubeUIFix")
+            Text("FeedFix for YouTube")
                 .font(.title.bold())
 
             Text("Enable the extension in\nSafari → Settings → Extensions")

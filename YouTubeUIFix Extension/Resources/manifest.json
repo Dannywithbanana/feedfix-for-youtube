@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "YouTubeUIFix",
+  "name": "FeedFix for YouTube",
   "version": "1.1",
   "description": "Blocks YouTube Shorts and fixes the video grid layout.",
 
