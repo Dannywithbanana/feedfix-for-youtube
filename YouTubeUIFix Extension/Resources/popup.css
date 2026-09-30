@@ -74,6 +74,11 @@ body {
   background: var(--surface);
 }
 
+/* Rows with a switch are <label>s: the whole row toggles it */
+label.toggle-row {
+  cursor: pointer;
+}
+
 .toggle-info {
   display: flex;
   flex-direction: column;
@@ -130,6 +135,13 @@ body {
 
 .switch input:checked + .slider::before {
   transform: translateX(18px);
+}
+
+/* The real checkbox is invisible, so show keyboard focus on the slider */
+.switch input:focus-visible + .slider,
+.segmented button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 /* ── Segmented control (videos per row) ── */

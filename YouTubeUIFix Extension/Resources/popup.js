@@ -28,7 +28,9 @@ function fromStored(stored) {
 
 function renderCols(cols) {
   for (const btn of colsPicker.querySelectorAll('button')) {
-    btn.classList.toggle('active', Number(btn.dataset.cols) === cols);
+    const on = Number(btn.dataset.cols) === cols;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
   }
 }
 

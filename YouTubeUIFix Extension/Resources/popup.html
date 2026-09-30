@@ -17,51 +17,51 @@
 
   <div class="section-title">Shorts</div>
 
-  <div class="toggle-row">
+  <label class="toggle-row">
     <div class="toggle-info">
       <span class="toggle-label">Block Shorts</span>
       <span class="toggle-desc">Hides Shorts from the feed, sidebar &amp; search</span>
     </div>
-    <label class="switch">
+    <span class="switch">
       <input type="checkbox" id="toggle-shorts" />
       <span class="slider"></span>
-    </label>
-  </div>
+    </span>
+  </label>
 
-  <div class="toggle-row">
+  <label class="toggle-row">
     <div class="toggle-info">
       <span class="toggle-label">Open Shorts in normal player</span>
       <span class="toggle-desc">Redirects /shorts/ links to the regular watch page</span>
     </div>
-    <label class="switch">
+    <span class="switch">
       <input type="checkbox" id="toggle-redirect" />
       <span class="slider"></span>
-    </label>
-  </div>
+    </span>
+  </label>
 
   <div class="section-title">Feed</div>
 
-  <div class="toggle-row">
+  <label class="toggle-row">
     <div class="toggle-info">
       <span class="toggle-label">Videos only</span>
       <span class="toggle-desc">Hides topic suggestions, community posts &amp; promo shelves</span>
     </div>
-    <label class="switch">
+    <span class="switch">
       <input type="checkbox" id="toggle-videosonly" />
       <span class="slider"></span>
-    </label>
-  </div>
+    </span>
+  </label>
 
-  <div class="toggle-row">
+  <label class="toggle-row">
     <div class="toggle-info">
       <span class="toggle-label">Ignore paid-promotion label</span>
       <span class="toggle-desc">Clicking the “Includes paid promotion” tag opens the video, not a help page</span>
     </div>
-    <label class="switch">
+    <span class="switch">
       <input type="checkbox" id="toggle-promo" />
       <span class="slider"></span>
-    </label>
-  </div>
+    </span>
+  </label>
 
   <div class="section-title">Layout</div>
 
@@ -71,7 +71,7 @@
       <span class="toggle-desc">Auto lets YouTube decide</span>
     </div>
   </div>
-  <div class="segmented" id="cols-picker">
+  <div class="segmented" id="cols-picker" role="group" aria-label="Videos per row">
     <button data-cols="0">Auto</button>
     <button data-cols="3">3</button>
     <button data-cols="4">4</button>
@@ -79,16 +79,16 @@
     <button data-cols="6">6</button>
   </div>
 
-  <div class="toggle-row">
+  <label class="toggle-row">
     <div class="toggle-info">
       <span class="toggle-label">Full-width feed</span>
       <span class="toggle-desc">Stretches the video grid across the whole page</span>
     </div>
-    <label class="switch">
+    <span class="switch">
       <input type="checkbox" id="toggle-fullwidth" />
       <span class="slider"></span>
-    </label>
-  </div>
+    </span>
+  </label>
 
   <div class="footer">Active on youtube.com · changes apply instantly</div>
 
