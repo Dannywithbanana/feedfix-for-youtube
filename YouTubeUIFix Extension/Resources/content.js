@@ -43,13 +43,33 @@ function apply() {
   tagShortsChips();
 }
 
+const SHORTS_PATH = /^\/shorts\/([^/?#]+)/;
+
 function redirectShortsUrl() {
   if (!state.redirectShorts) return;
-  const m = location.pathname.match(/^\/shorts\/([^/?#]+)/);
+  const m = location.pathname.match(SHORTS_PATH);
   if (m) {
-    location.replace('https://www.youtube.com/watch?v=' + m[1]);
+    location.replace('/watch?v=' + m[1]);
   }
 }
+
+// Clicking a Shorts link inside YouTube is an in-app navigation: the
+// Shorts player loads and starts playing before redirectShortsUrl() sees
+// the new URL. Catch plain left-clicks first and go straight to the watch
+// page. Modified clicks (new tab / window) still open /shorts/, which the
+// redirect above handles on load.
+window.addEventListener('click', (e) => {
+  if (!state.redirectShorts) return;
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const link = e.target.closest?.('a[href*="/shorts/"]');
+  if (!link) return;
+  const url = new URL(link.href);
+  const m = /(^|\.)youtube\.com$/.test(url.hostname) && url.pathname.match(SHORTS_PATH);
+  if (!m) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  location.assign('/watch?v=' + m[1]);
+}, true);
 
 // Filter chips ("Shorts" pill above the feed) carry no attribute we can
 // select on, so match their text here and let content.css hide the class.
@@ -82,7 +102,9 @@ document.addEventListener('yt-page-data-updated', apply);
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'sync') return;
   for (const [key, { newValue }] of Object.entries(changes)) {
-    if (key in state) state[key] = newValue;
+    // A removed key (newValue undefined) falls back to its default —
+    // classList.toggle(name, undefined) would flip the class instead.
+    if (key in state) state[key] = newValue ?? DEFAULTS[key];
   }
   apply();
 });
