@@ -3,6 +3,6 @@
     "message": "FeedFix for YouTube"
   },
   "extensionDescription": {
-    "message": "Blocks YouTube Shorts and fixes the video grid layout."
+    "message": "Blocks YouTube Shorts, keeps the feed to real videos, and lets you set the grid layout."
   }
 }
