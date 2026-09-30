@@ -11,6 +11,7 @@ const DEFAULTS = {
   videosOnly: true,   // only video tiles in the feed grid
   gridColumns: 0,     // 0 = YouTube default, 3–6 = forced columns
   fullWidth: false,
+  promoClickThrough: true, // paid-promotion label doesn't open a help page
 };
 
 let state = { ...DEFAULTS };
@@ -32,6 +33,7 @@ function apply() {
   html.classList.toggle('ytfix-no-shorts', state.blockShorts);
   html.classList.toggle('ytfix-videos-only', state.videosOnly);
   html.classList.toggle('ytfix-full-width', state.fullWidth);
+  html.classList.toggle('ytfix-promo-click-through', state.promoClickThrough);
   if (state.gridColumns >= 3) {
     html.dataset.ytfixCols = String(state.gridColumns);
   } else {

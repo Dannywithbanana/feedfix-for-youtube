@@ -7,6 +7,7 @@
      html.ytfix-videos-only      → only video tiles in the feed grid
      html[data-ytfix-cols="N"]   → force N videos per row (3–6)
      html.ytfix-full-width       → feed spans the full page width
+     html.ytfix-promo-click-through → paid-promotion label isn't a link
 ──────────────────────────────────────────────────────────────── */
 
 /* ── Block Shorts ─────────────────────────────────────────── */
@@ -85,4 +86,16 @@ html.ytfix-full-width ytd-two-column-browse-results-renderer.grid-6-columns,
 html.ytfix-full-width ytd-two-column-browse-results-renderer.grid:not(.grid-disabled) {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* ── Paid-promotion label click-through ───────────────────────
+   The "Includes paid promotion" (含有付費宣傳內容) pill the player
+   shows for its first seconds is a link to a Google help page.
+   On hover previews it covers a big slice of a small thumbnail, so
+   clicks meant for the video open that page instead. Keep the pill
+   visible but let clicks fall through to the player underneath.  */
+
+html.ytfix-promo-click-through .ytp-paid-content-overlay,
+html.ytfix-promo-click-through .ytp-paid-content-overlay * {
+  pointer-events: none !important;
 }

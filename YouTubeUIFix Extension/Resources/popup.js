@@ -6,6 +6,7 @@ const DEFAULTS = {
   videosOnly: true,
   gridColumns: 0,
   fullWidth: false,
+  promoClickThrough: true,
 };
 
 const shortsToggle     = document.getElementById('toggle-shorts');
@@ -13,6 +14,7 @@ const redirectToggle   = document.getElementById('toggle-redirect');
 const videosOnlyToggle = document.getElementById('toggle-videosonly');
 const fullWidthToggle = document.getElementById('toggle-fullwidth');
 const colsPicker      = document.getElementById('cols-picker');
+const promoToggle     = document.getElementById('toggle-promo');
 
 // Settings written by versions ≤1.0 only had { blockShorts, fixGrid }.
 function fromStored(stored) {
@@ -36,6 +38,7 @@ chrome.storage.sync.get(null, (stored) => {
   redirectToggle.checked   = s.redirectShorts;
   videosOnlyToggle.checked = s.videosOnly;
   fullWidthToggle.checked  = s.fullWidth;
+  promoToggle.checked      = s.promoClickThrough;
   renderCols(s.gridColumns);
 });
 
@@ -54,6 +57,10 @@ videosOnlyToggle.addEventListener('change', () => {
 
 fullWidthToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ fullWidth: fullWidthToggle.checked });
+});
+
+promoToggle.addEventListener('change', () => {
+  chrome.storage.sync.set({ promoClickThrough: promoToggle.checked });
 });
 
 colsPicker.addEventListener('click', (e) => {

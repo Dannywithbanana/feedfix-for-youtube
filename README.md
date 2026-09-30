@@ -18,6 +18,7 @@ All options live in the toolbar popup and apply to open tabs instantly.
 | **Block Shorts** | Hides Shorts from the home feed, sidebar, search results, channel tabs and filter chips |
 | **Open Shorts in normal player** | Redirects `/shorts/...` links to the regular watch page |
 | **Videos only** | Hides topic suggestions, community posts & promo shelves from the feed |
+| **Ignore paid-promotion label** | The player's "Includes paid promotion" tag no longer links to a Google help page — clicks go to the video (matters most on small hover previews) |
 | **Videos per row** | Auto (YouTube default) or a fixed 3–6 columns |
 | **Full-width feed** | Removes YouTube's feed width cap — pairs well with 5–6 columns on big monitors |
 
@@ -43,7 +44,8 @@ promo elements, the rules state invariants.
 - All page styling lives in [`content.css`](YouTubeUIFix%20Extension/Resources/content.css),
   gated by classes/data-attributes that
   [`content.js`](YouTubeUIFix%20Extension/Resources/content.js) sets on `<html>`
-  (`ytfix-no-shorts`, `ytfix-videos-only`, `data-ytfix-cols`, `ytfix-full-width`).
+  (`ytfix-no-shorts`, `ytfix-videos-only`, `data-ytfix-cols`, `ytfix-full-width`,
+  `ytfix-promo-click-through`).
   Toggling an option off removes the class — YouTube's own layout returns
   untouched.
 - **Videos only** is an allowlist, not a blocklist: a feed cell is kept only
