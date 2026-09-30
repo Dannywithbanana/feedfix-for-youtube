@@ -16,9 +16,9 @@ All options live in the toolbar popup and apply to open tabs instantly.
 | Option | What it does |
 | --- | --- |
 | **Block Shorts** | Hides Shorts from the home feed, sidebar, search results, channel tabs and filter chips |
-| **Open Shorts in normal player** | Redirects `/shorts/...` links to the regular watch page |
+| **Open Shorts in normal player** | Sends `/shorts/...` links straight to the regular watch page (in-app clicks skip the Shorts player entirely) |
 | **Videos only** | Hides topic suggestions, community posts & promo shelves from the feed |
-| **Ignore paid-promotion label** | The player's "Includes paid promotion" tag no longer links to a Google help page — clicks go to the video (matters most on small hover previews) |
+| **Ignore paid-promotion label** | The "Includes paid promotion" tag — on thumbnail hover previews and in the player — no longer links to a Google help page; clicks go to the video |
 | **Videos per row** | Auto (YouTube default) or a fixed 3–6 columns |
 | **Full-width feed** | Removes YouTube's feed width cap — pairs well with 5–6 columns on big monitors |
 
@@ -62,7 +62,7 @@ xcodebuild -scheme YouTubeUIFix -configuration Debug build
 
 # Chromium zip (for stores or sideloading)
 cd "YouTubeUIFix Extension/Resources"
-zip -r ../../dist/feedfix-for-youtube.zip . -x "*.DS_Store"
+zip -r ../../dist/feedfix-for-youtube-1.2.zip . -x "*.DS_Store"
 ```
 
 The icon is generated from [`design/icon-source.html`](design/icon-source.html)
