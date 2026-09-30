@@ -93,9 +93,20 @@ html.ytfix-full-width ytd-two-column-browse-results-renderer.grid:not(.grid-disa
    shows for its first seconds is a link to a Google help page.
    On hover previews it covers a big slice of a small thumbnail, so
    clicks meant for the video open that page instead. Keep the pill
-   visible but let clicks fall through to the player underneath.  */
+   visible but let clicks fall through to the video underneath.
+
+   Two copies exist: the full player's (.ytp-paid-content-overlay)
+   and the thumbnail hover preview's, which yt-inline-player-controls
+   draws itself (ytm-paid-content-overlay-renderer). The preview's
+   copy sits in a corner wrapper that is sized to the pill and
+   outside the preview's video link, so the wrapper must pass clicks
+   too — otherwise they'd land on it and do nothing.            */
 
 html.ytfix-promo-click-through .ytp-paid-content-overlay,
-html.ytfix-promo-click-through .ytp-paid-content-overlay * {
+html.ytfix-promo-click-through .ytp-paid-content-overlay *,
+html.ytfix-promo-click-through .ytInlinePlayerControlsTopLeftControls:has(ytm-paid-content-overlay-renderer),
+html.ytfix-promo-click-through .ytInlinePlayerControlsBottomLeftControls:has(ytm-paid-content-overlay-renderer),
+html.ytfix-promo-click-through ytm-paid-content-overlay-renderer,
+html.ytfix-promo-click-through ytm-paid-content-overlay-renderer * {
   pointer-events: none !important;
 }
